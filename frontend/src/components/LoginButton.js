@@ -1,4 +1,9 @@
 
+//CSS
+import '../styles/buttons.css';
+
+//React Components
+import { useNavigate } from "react-router-dom";
 
 const LoginButton = () => {
     const navigate = useNavigate();
@@ -8,8 +13,8 @@ const LoginButton = () => {
     }
 
     return (
-        <div className="" onClick={onClick}>
-
+        <div className="Nav-Login" onClick={onClick}>
+            Login &#9094;
         </div>
     )
 }

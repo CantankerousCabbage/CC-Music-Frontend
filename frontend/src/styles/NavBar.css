@@ -1,4 +1,21 @@
+
+.Nav-Container{
+    width: 100%;
+    height: fit-content;
+}
+
 .Nav-Header{
     min-height: 5vh;
     text-align: center;
+}
+
+.Nav-Button-Container{
+   display: flex;
+   justify-content: space-between;
+   padding: 0 4vw; 
+}
+
+.Nav-Button-Right{ 
+    display: flex;
+    flex-direction: column;
 }

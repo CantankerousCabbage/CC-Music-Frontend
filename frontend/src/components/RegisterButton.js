@@ -1,4 +1,6 @@
 
+//React Components
+import { useNavigate } from "react-router-dom";
 
 const RegisterButton = () => {
     const navigate = useNavigate();
@@ -7,8 +9,8 @@ const RegisterButton = () => {
         navigate("/Register");
     }
     return (
-        <div className="" onClick={onClick}>
-            
+        <div className="Nav-Register" onClick={onClick}>
+            Register
         </div>
     )
 }

@@ -18,9 +18,6 @@ function App() {
     <div className='App'>
 		<Router>
 			<NavBar />
-			<Link to="/">Home</Link>
-			<Link to="/Register">Register</Link>
-			<Link to="/Login">Login</Link>
 			<Routes>
 				<Route path="/" element={<Home />}/>
 				<Route path="Register" element={<Register />}/>
