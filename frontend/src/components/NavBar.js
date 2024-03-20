@@ -10,9 +10,12 @@ import RegisterButton from './RegisterButton';
 
 const NavBar = () => {
     return (
+        
+        <>
+        <ContentBuffer/>
         <div className='Nav-Container'>
             <div className="Nav-Header">
-                Music Solutions
+                <h1>Music Solutions</h1>
             </div>
             <div className="Nav-Button-Container">
                 <HomeButton />
@@ -22,6 +25,15 @@ const NavBar = () => {
                     <RegisterButton />
                 </div>
             </div>
+        </div>
+        </>
+        
+    )
+}
+
+const ContentBuffer = () => {
+    return (
+        <div className='Content-Buffer'>
         </div>
     )
 }

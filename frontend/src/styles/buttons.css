@@ -7,7 +7,7 @@
 
 .Nav-Login{
     font-size: calc(5px + 2vmin);
-    background-color:white;
+    background-color:rgb(171, 112, 226);
     border-radius: 10px;
     color: black;
     border-color: black;
@@ -20,11 +20,11 @@
 }
 
 .Nav-Login:hover{
-    background-color: beige;
+    background-color: blueviolet;;
     
 }
 .Nav-Login:active{
-    background-color:  white;
+    background-color: rgb(171, 112, 226);
     
 }
 

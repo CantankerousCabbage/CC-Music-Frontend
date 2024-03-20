@@ -1,0 +1,36 @@
+
+label {
+    font-size: calc(10px + 2vmin);
+}
+
+.Page-Heading{
+    margin: 0 auto;
+}
+
+.Content-Container{
+    
+    margin: auto;
+    width: 100vw;
+    min-width: 250px;
+    height: 100vh;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    
+     
+}
+
+.Form-Container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 50vw;
+    min-width: 400px;
+    height: 60vw;
+    min-height: 450px;
+}
+
+.Form-Error {
+    color: red;
+}

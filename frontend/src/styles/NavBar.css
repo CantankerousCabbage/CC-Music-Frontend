@@ -1,7 +1,12 @@
 
 .Nav-Container{
+    background-color:  #282c34;
+    font-size: calc(10px + 2vmin);
     width: 100%;
     height: fit-content;
+    position: fixed;
+    z-index: 0;
+    top: 0;
 }
 
 .Nav-Header{
@@ -13,6 +18,15 @@
    display: flex;
    justify-content: space-between;
    padding: 0 4vw; 
+   height: 5vh;
+   min-height: fit-content;
+
+}
+
+.Content-Buffer {
+    height: 10vh;
+    min-height: calc(50px + 8vmin);
+    z-index: 1;
 }
 
 .Nav-Button-Right{ 
