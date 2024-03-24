@@ -4,22 +4,36 @@
 import '../styles/forms.css';
 
 //React
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
+//Componenets
+import Error from '../components/Error';
+
+//Functions
+import { attemptLogin } from '../utils/formLogic';
 
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     //States for form data
     const[email, setEmail] = useState("");
     const[password, setPassWord] = useState("");
-    const[error, setError] = useState({error: false, message: ""});
+    const[error, setError] = useState({email: "", password: ""});
 
+    //TODO update to async
     //Handles form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(email);
-        console.log(password);
-        setError({error: true, message: "Error Test"});
+        
+        //Navigate Home on Login
+        if(attemptLogin(error, setError, email, password)){
+            console.log(email);
+            console.log(password);
+            navigate("/");
+        }
     }
 
     return (
@@ -29,24 +43,15 @@ const Login = () => {
                 <label>Email:</label>
                 <input type="text" id="email" name="email" value={email} 
                 onChange={(e) => setEmail(e.target.value)}/>
-
+                {error.email !== "" && <Error error={error.email} />}
                 <label>Password:</label>
-                <input type="password" id="password" name="password" value={password}
+                <input type="current-password" id="current-password" name="current-password" value={password}
                  onChange={(e) => setPassWord(e.target.value)}/>
-                {error.error && <Error error={error} />}
+                {error.password !== "" && <Error error={error.password} />}
                 <button type="submit">Submit</button>
             </form>
         </div>
     )
 }
-
-const Error = ({ error }) => {
-    return (
-        <div className='Form-Error'>
-            {error.message}
-        </div>
-    )
-}
-
 
 export default Login;

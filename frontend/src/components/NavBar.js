@@ -1,4 +1,8 @@
 
+//React
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 //Css
 import '../styles/NavBar.css';
 
@@ -9,6 +13,8 @@ import LoginButton from './LoginButton';
 import RegisterButton from './RegisterButton';
 
 const NavBar = () => {
+    const location = useLocation();
+    
     return (
         
         <>
@@ -20,10 +26,12 @@ const NavBar = () => {
             <div className="Nav-Button-Container">
                 <HomeButton />
 
-                <div className='Nav-Button-Right'>
+                {(location.pathname == "/") &&
+                (<div className='Nav-Button-Right'>
                     <LoginButton />
                     <RegisterButton />
-                </div>
+                </div>)}
+                
             </div>
         </div>
         </>
