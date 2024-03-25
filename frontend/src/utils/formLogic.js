@@ -1,6 +1,16 @@
+import React from "react";
 
+const validateRegisterForm = (setError, email, pw) => {
 
-const validateEmail = (error, setError, email) => {
+    let emailError = validateEmail(email);
+    let pwError = validatePassword(pw);
+
+    let temp = {email: emailError, password: pwError};
+    setError(temp);
+
+    return temp.email === "" && temp.password === "";
+}
+const validateEmail = (email) => {
     
     let valid = false;
     let errorMsg = "";
@@ -17,18 +27,11 @@ const validateEmail = (error, setError, email) => {
     } else {
         valid = true;
     }
-
-    // console.log("Email message: " + errorMsg);
-    // const temp = {...error}
-    // temp.email = errorMsg;
-    console.log(error);
-    setError(error => ({ ...error, email: errorMsg }));
-    // setError({email: "cat", password: "rat"});
     
-    return valid;
+    return errorMsg;
 }
 
-function validatePassword(error, setError, pw) {
+function validatePassword(pw) {
     
     let valid = false;
     let errorMsg = "";
@@ -40,13 +43,8 @@ function validatePassword(error, setError, pw) {
     else {
         valid = true;
     }
-
     
-    const temp = {...error}
-    temp.password = errorMsg;
-    setError(temp);
-    
-    return valid;
+    return errorMsg;
 }
 
 function addUser() {
@@ -69,8 +67,7 @@ function emailInUse(){
 }
 
 export {
-    validateEmail,
-    validatePassword,
+    validateRegisterForm,
     attemptLogin,
     loginUser,
     addUser
