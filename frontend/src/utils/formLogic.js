@@ -1,18 +1,18 @@
 import React from "react";
 
-const validateRegisterForm = (setError, email, pw) => {
+const validateRegisterForm = ( setError, fields ) => {
 
-    let emailError = validateEmail(email);
-    let pwError = validatePassword(pw);
+    let emailError = validateEmail(fields.name);
+    let nameError = validateUsername(fields.userName);
+    let pwError = validatePassword(fields.password);
 
-    let temp = {email: emailError, password: pwError};
+    let temp = {email: emailError, username: nameError, password: pwError};
     setError(temp);
 
     return temp.email === "" && temp.password === "";
 }
 const validateEmail = (email) => {
     
-    let valid = false;
     let errorMsg = "";
 
     // Check exists, basic regex for structure and not in DB.
@@ -24,25 +24,31 @@ const validateEmail = (email) => {
     } 
     else if (emailInUse(email)){
         errorMsg = "Email in use."
-    } else {
-        valid = true;
-    }
+    } 
     
     return errorMsg;
 }
 
 function validatePassword(pw) {
     
-    let valid = false;
     let errorMsg = "";
 
     //Check that exists. 
     if(pw === "") {
         errorMsg = "Password needed."
     } 
-    else {
-        valid = true;
-    }
+    
+    return errorMsg;
+}
+
+function validateUsername(username) {
+    
+    let errorMsg = "";
+
+    //Check that exists. 
+    if(username === "") {
+        errorMsg = "Username needed."
+    } 
     
     return errorMsg;
 }
@@ -52,12 +58,12 @@ function addUser() {
 }
 
 //TODO implement
-function loginUser(email, password){
+function loginUser( fields ){
 
 }
 
 //TODO implement
-function attemptLogin(error, setError, email, password) {
+function attemptLogin( fields ) {
     return true;
 }
 

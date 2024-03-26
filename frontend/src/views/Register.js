@@ -19,8 +19,10 @@ const Register = () => {
     
 
     //States for form data
-    const[email, setEmail] = useState("");
-    const[password, setPassWord] = useState("");
+    // const[email, setEmail] = useState("");
+    // const[password, setPassWord] = useState("");
+
+    const[fields, setFields] = useState({ email: "", username: "", password: ""})
     
     const[error, setError] = useState({email: "", password: ""});
     const navigate = useNavigate();
@@ -30,12 +32,20 @@ const Register = () => {
         event.preventDefault();
         
         //If registration valid login and Home. 
-        if(validateRegisterForm( setError, email, password)){
+        if(validateRegisterForm( setError, fields)){
 
-            addUser(email, password);
-            loginUser(email, password);
-            navigate("/");
+            addUser(fields);
+            loginUser(fields);
+            navigate("/Login");
         }
+    }
+
+    const updateFields = (event) => {
+        
+        let temp = {...fields};
+        temp[event.target.name] = event.target.value;
+
+        setFields(temp);
     }
 
     return (
@@ -43,12 +53,16 @@ const Register = () => {
             <div className='Page-Heading'><h2>Register</h2></div>
             <form className='Form-Container' onSubmit={handleSubmit} noValidate>
                 <label>Email:</label>
-                <input type="text" id="email" name="email" value={email} 
-                onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" id="email" name="email" value={fields.email} 
+                onChange={updateFields}/>
                 {(error.email !== "") && Error(error.email)}
+                <label>Username:</label>
+                <input type="text" id="username" name="username" value={fields.username} 
+                onChange={updateFields}/>
+                {(error.username !== "") && Error(error.username)}
                 <label>Password:</label>
-                <input type="current-password" id="current-password" name="current-password" value={password}
-                 onChange={(e) => setPassWord(e.target.value)}/>
+                <input type="current-password" id="current-password" name="current-password" value={fields.password}
+                 onChange={updateFields}/>
                 {(error.password !== "") && Error(error.password)}
                 <button type="submit">Submit</button>
             </form>
