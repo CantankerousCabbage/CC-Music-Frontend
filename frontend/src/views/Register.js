@@ -61,7 +61,7 @@ const Register = () => {
                 onChange={updateFields}/>
                 {(error.username !== "") && Error(error.username)}
                 <label>Password:</label>
-                <input type="current-password" id="current-password" name="current-password" value={fields.password}
+                <input type="password" id="password" name="password" value={fields.password}
                  onChange={updateFields}/>
                 {(error.password !== "") && Error(error.password)}
                 <button type="submit">Submit</button>

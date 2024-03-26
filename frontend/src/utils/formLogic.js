@@ -2,7 +2,7 @@ import React from "react";
 
 const validateRegisterForm = ( setError, fields ) => {
 
-    let emailError = validateEmail(fields.name);
+    let emailError = validateEmail(fields.email);
     let nameError = validateUsername(fields.userName);
     let pwError = validatePassword(fields.password);
 
