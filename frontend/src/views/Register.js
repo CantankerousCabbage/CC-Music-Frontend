@@ -16,15 +16,9 @@ import Error from '../components/Error';
 
 const Register = () => {
 
-    
-
-    //States for form data
-    // const[email, setEmail] = useState("");
-    // const[password, setPassWord] = useState("");
-
     const[fields, setFields] = useState({ email: "", username: "", password: ""})
-    
     const[error, setError] = useState({email: "", password: ""});
+
     const navigate = useNavigate();
 
     //Handles form submission
@@ -64,7 +58,8 @@ const Register = () => {
                 <input type="password" id="password" name="password" value={fields.password}
                  onChange={updateFields}/>
                 {(error.password !== "") && Error(error.password)}
-                <button type="submit">Submit</button>
+                <button type="submit" className='submit'>Register</button>
+                <button type="submit" className='submit'>Cancel</button>
             </form>
         </div>
     )
