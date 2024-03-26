@@ -12,6 +12,8 @@ import { validateRegisterForm, addUser, loginUser } from '../utils/formLogic';
 
 //Componenets
 import Error from '../components/Error';
+import CancelButton from '../components/CancelButton';
+import SubmitButton from '../components/SubmitButton';
 
 
 const Register = () => {
@@ -49,6 +51,8 @@ const Register = () => {
                 <label>Email:</label>
                 <input type="text" id="email" name="email" value={fields.email} 
                 onChange={updateFields}/>
+
+                
                 {(error.email !== "") && Error(error.email)}
                 <label>Username:</label>
                 <input type="text" id="username" name="username" value={fields.username} 
@@ -58,8 +62,12 @@ const Register = () => {
                 <input type="password" id="password" name="password" value={fields.password}
                  onChange={updateFields}/>
                 {(error.password !== "") && Error(error.password)}
-                <button type="submit" className='submit'>Register</button>
-                <button type="submit" className='submit'>Cancel</button>
+                
+                <div className='form-b-container'>
+                    <SubmitButton buttonText={"Register"} />
+                    <CancelButton />
+                </div>
+                
             </form>
         </div>
     )

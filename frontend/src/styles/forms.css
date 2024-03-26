@@ -1,23 +1,26 @@
 
 label {
-    font-size: calc(10px + 2vmin);
+    font-size: calc(8px + 2vmin);
+}
+
+input {
+    min-width: 60%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .Page-Heading{
     margin: 0 auto;
 }
 
-.Content-Container{
-    
+.Content-Container{ 
     margin: auto;
     width: 100vw;
     min-width: 250px;
     height: 100vh;
     min-height: 400px;
     display: flex;
-    flex-direction: column;
-    
-     
+    flex-direction: column;   
 }
 
 .Form-Container{
@@ -33,9 +36,38 @@ label {
 
 .Form-Error {
     color: red;
+    font-size: calc(5px + 1vmin);
 }
 
-.submit {
-    width: fit-content;
-    margin: 0 auto;
+.form-b-container{
+    display: flex;
+    justify-content: center;
 }
+
+.form-button {
+    font-size: calc(5px + 2vmin);
+    border-radius: 5px;
+    width: fit-content;
+    min-width: calc(45px + 5vmin);
+    text-decoration: none;
+    border-style: none;
+    cursor: pointer;
+    margin: calc(10px + 2vmin);
+    background-color: rgb(171, 112, 226);
+}
+
+.form-button:hover{
+    background-color: blueviolet;;
+    
+}
+
+.form-button:active{
+    background-color: rgb(171, 112, 226);
+    
+}
+
+.login-register-container {
+    margin-top: calc(10px + 1vh);
+    text-align: center;
+}
+

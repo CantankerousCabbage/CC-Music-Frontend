@@ -9,6 +9,9 @@ import { useState, useEffect } from 'react';
 
 //Componenets
 import Error from '../components/Error';
+import CancelButton from '../components/CancelButton';
+import SubmitButton from '../components/SubmitButton';
+import RegisterButton from '../components/RegisterButton'
 
 //Functions
 import { attemptLogin } from '../utils/formLogic';
@@ -48,7 +51,16 @@ const Login = () => {
                 <input type="current-password" id="current-password" name="current-password" value={password}
                  onChange={(e) => setPassWord(e.target.value)}/>
                 {error.password !== "" && <Error error={error.password} />}
-                <button type="submit">Submit</button>
+                <div className='login-register-container'>
+                    Don't have an account? 
+                    <RegisterButton />
+                </div>
+
+                <div className='form-b-container'>
+                    <SubmitButton buttonText={"Login"} />
+                    <CancelButton />
+                </div>
+                
             </form>
         </div>
     )
