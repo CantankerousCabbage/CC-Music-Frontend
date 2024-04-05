@@ -24,7 +24,7 @@ const NavBar = ( { user, setUser } ) => {
         <ContentBuffer/>
         <div className='Nav-Container'>
             <div className="Nav-Header">
-                <h1> &#9835; Music Solutions <span className='flip-title-icon'>&#9835;</span></h1>
+                <h1> &#9835; Music Solutions <span className='flip-title-icon'>&#9834;</span></h1>
             </div>
             <div className="Nav-Button-Container">
                 <HomeButton />
@@ -34,7 +34,7 @@ const NavBar = ( { user, setUser } ) => {
                     <LoginButton />
                     <RegisterButton />
                 </div>)}
-                {user.username !== "" && (<LogoutButton />)}
+                {user.username !== "" && (<LogoutButton setUser={setUser}/>)}
             </div>
         </div>
         </>

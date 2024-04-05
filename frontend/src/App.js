@@ -15,7 +15,7 @@ import Login from "./views/Login";
 
 function App() {
 
-	const[user, setUser] = useState({ username: "" });
+	const[user, setUser] = useState({ username: "cat", email: ""});
 
 	return (
 		<div className='App'>
@@ -25,12 +25,14 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home user={user} />}/>
 						<Route path="Register" element={<Register />}/>
-						<Route path="Login" element={<Login />}/>
+						<Route path="Login" element={<Login setUser={setUser}/>}/>
 					</Routes>
 				
 			</Router>
 		</div>
 	);
 }
+
+
 
 export default App;

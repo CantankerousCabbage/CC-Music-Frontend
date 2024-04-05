@@ -5,7 +5,7 @@ import '../styles/forms.css';
 
 //React
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 //Componenets
 import Error from '../components/Error';
@@ -14,10 +14,10 @@ import SubmitButton from '../components/SubmitButton';
 import RegisterButton from '../components/RegisterButton'
 
 //Functions
-import { validateLogin, attemptLogin } from '../utils/formLogic';
+import { validateLogin, attemptLogin, setUser } from '../utils/formLogic';
 
 
-const Login = () => {
+const Login = ( { setUser }) => {
 
     const navigate = useNavigate();
 
@@ -32,6 +32,9 @@ const Login = () => {
         
         //Navigate Home on Login
         if(validateLogin(setError, fields) && attemptLogin( fields )){
+
+            //TODO get usename returned from login check
+            setUser( {username: "Bob", email: fields.email} );
             navigate("/");
         }
     }

@@ -2,14 +2,19 @@
 import '../styles/buttons.css';
 
 //Icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-const LogoutButton = () => {
+//React
+import { useNavigate } from 'react-router-dom';
+
+const LogoutButton = ( {setUser} ) => {
     
+    const navigate = useNavigate();
 
     const onClick = () => {
-        
+        setUser({ username: "", email: ""});
+        navigate("/Login");
     }
 
     return (

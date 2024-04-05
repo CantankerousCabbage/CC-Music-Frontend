@@ -1,0 +1,24 @@
+.Home-Content-Container{
+    padding: calc(10px + 1vmin);
+    height: fit-content;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.Home-Col1-Container{
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.Home-Col2-Container{
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.Results-Container {
+    display: flex;
+    flex-direction: column;
+}
