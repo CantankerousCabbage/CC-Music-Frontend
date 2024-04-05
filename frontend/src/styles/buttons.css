@@ -19,6 +19,16 @@
     cursor: pointer;
 }
 
+.Font-Aws {
+    font-size: calc(5px + 1vmin);
+    color: black;
+    transform: translate(0, 2px);
+}
+
+.text-icon-divide {
+    margin-right: 5px;
+}
+
 .Nav-Login:hover{
     background-color: blueviolet;;
     

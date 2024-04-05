@@ -33,3 +33,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.flip-title-icon{
+    display: inline-block;
+    transform: rotateY(180deg);
+}

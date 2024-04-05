@@ -1,6 +1,10 @@
 //CSS
 import '../styles/buttons.css';
 
+//Icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 const LogoutButton = () => {
     
 
@@ -10,7 +14,7 @@ const LogoutButton = () => {
 
     return (
         <div className="Nav-Login" onClick={onClick}>
-            Login &#9094;
+            <span className='text-icon-divide'>Logout</span> <FontAwesomeIcon icon={faArrowRightFromBracket} className='Font-Aws'/>
         </div>
     )
 }

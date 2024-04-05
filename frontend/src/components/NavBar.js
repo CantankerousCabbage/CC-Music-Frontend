@@ -10,10 +10,12 @@ import '../styles/NavBar.css';
 //Components
 import HomeButton from "./HomeButton";
 
+import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
 import RegisterButton from './RegisterButton';
 
-const NavBar = () => {
+
+const NavBar = ( { user, setUser } ) => {
     const location = useLocation();
     
     return (
@@ -22,17 +24,17 @@ const NavBar = () => {
         <ContentBuffer/>
         <div className='Nav-Container'>
             <div className="Nav-Header">
-                <h1>Music Solutions</h1>
+                <h1> &#9835; Music Solutions <span className='flip-title-icon'>&#9835;</span></h1>
             </div>
             <div className="Nav-Button-Container">
                 <HomeButton />
 
-                {(location.pathname == "/") &&
+                {(location.pathname == "/") && (user.username === "") &&
                 (<div className='Nav-Button-Right'>
                     <LoginButton />
                     <RegisterButton />
                 </div>)}
-                
+                {user.username !== "" && (<LogoutButton />)}
             </div>
         </div>
         </>
