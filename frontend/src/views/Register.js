@@ -48,21 +48,24 @@ const Register = () => {
         <div className="Content-Container">
             <div className='Page-Heading'><h2>Register</h2></div>
             <form className='Form-Container' onSubmit={handleSubmit} noValidate>
-                <label>Email:</label>
-                <input type="text" id="email" name="email" value={fields.email} 
-                onChange={updateFields}/>
-
-                
-                {(error.email !== "") && Error(error.email)}
-                <label>Username:</label>
-                <input type="text" id="username" name="username" value={fields.username} 
-                onChange={updateFields}/>
-                {(error.username !== "") && Error(error.username)}
-                <label>Password:</label>
-                <input type="password" id="password" name="password" value={fields.password}
-                 onChange={updateFields}/>
-                {(error.password !== "") && Error(error.password)}
-                
+                <div className='Form-Field'>
+                    <label>Email:</label>
+                    <input type="text" id="email" name="email" value={fields.email} 
+                    onChange={updateFields}/>
+                    {(error.email !== "") && Error(error.email)}
+                </div>
+                    <div className='Form-Field'>
+                    <label>Username:</label>
+                    <input type="text" id="username" name="username" value={fields.username} 
+                    onChange={updateFields}/>
+                    {(error.username !== "") && Error(error.username)}
+                </div>
+                <div className='Form-Field'>
+                    <label>Password:</label>
+                    <input type="password" id="password" name="password" value={fields.password}
+                    onChange={updateFields}/>
+                    {(error.password !== "") && Error(error.password)}
+                </div>
                 <div className='form-b-container'>
                     <SubmitButton buttonText={"Register"} />
                     <CancelButton />

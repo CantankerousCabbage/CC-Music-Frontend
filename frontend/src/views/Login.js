@@ -43,14 +43,18 @@ const Login = () => {
         <div className="Content-Container">
             <div className='Page-Heading'><h2>Login</h2></div>
             <form className='Form-Container' onSubmit={handleSubmit}>
-                <label>Email:</label>
-                <input type="text" id="email" name="email" value={email} 
-                onChange={(e) => setEmail(e.target.value)}/>
-                {error.email !== "" && <Error error={error.email} />}
-                <label>Password:</label>
-                <input type="current-password" id="current-password" name="current-password" value={password}
-                 onChange={(e) => setPassWord(e.target.value)}/>
-                {error.password !== "" && <Error error={error.password} />}
+                <div className='Form-Field'>
+                    <label>Email:</label>
+                    <input type="text" id="email" name="email" value={email} 
+                    onChange={(e) => setEmail(e.target.value)}/>
+                    {error.email !== "" && <Error error={error.email} />}
+                </div>
+                <div className='Form-Field'>
+                    <label>Password:</label>
+                    <input type="current-password" id="current-password" name="current-password" value={password}
+                    onChange={(e) => setPassWord(e.target.value)}/>
+                    {error.password !== "" && <Error error={error.password} />}
+                </div>
                 <div className='login-register-container'>
                     Don't have an account? 
                     <RegisterButton />
@@ -59,8 +63,7 @@ const Login = () => {
                 <div className='form-b-container'>
                     <SubmitButton buttonText={"Login"} />
                     <CancelButton />
-                </div>
-                
+                </div>  
             </form>
         </div>
     )

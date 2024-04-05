@@ -1,12 +1,7 @@
 
-label {
-    font-size: calc(8px + 2vmin);
-}
 
-input {
-    min-width: 60%;
-    max-width: 600px;
-    margin: 0 auto;
+h2 {
+    font-size: calc(6px + 2vmin);
 }
 
 .Page-Heading{
@@ -14,7 +9,8 @@ input {
 }
 
 .Content-Container{ 
-    margin: auto;
+    font-size: calc(6px + 1vmin);
+    margin: 10vh auto;
     width: 100vw;
     min-width: 250px;
     height: 100vh;
@@ -32,6 +28,14 @@ input {
     min-width: 400px;
     height: 60vw;
     min-height: 450px;
+}
+
+.Form-Field{
+    min-width: 60%;
+    max-width: 600px;
+    margin: calc(1% + 5px) auto 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .Form-Error {
