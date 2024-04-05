@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 //CSS
 import '../styles/forms.css';
@@ -14,7 +14,7 @@ import SubmitButton from '../components/SubmitButton';
 import RegisterButton from '../components/RegisterButton'
 
 //Functions
-import { attemptLogin } from '../utils/formLogic';
+import { validateLogin, attemptLogin } from '../utils/formLogic';
 
 
 const Login = () => {
@@ -22,8 +22,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     //States for form data
-    const[email, setEmail] = useState("");
-    const[password, setPassWord] = useState("");
+    const [fields, setFields] = useState({email: "", password: ""});
     const[error, setError] = useState({email: "", password: ""});
 
     //TODO update to async
@@ -32,11 +31,16 @@ const Login = () => {
         event.preventDefault();
         
         //Navigate Home on Login
-        if(attemptLogin(error, setError, email, password)){
-            console.log(email);
-            console.log(password);
+        if(validateLogin(setError, fields) && attemptLogin( fields )){
             navigate("/");
         }
+    }
+
+    const updateFields = (event) => {
+
+        const temp = {...fields};
+        temp[event.target.name] = event.target.value;
+        setFields(temp);
     }
 
     return (
@@ -45,15 +49,15 @@ const Login = () => {
             <form className='Form-Container' onSubmit={handleSubmit}>
                 <div className='Form-Field'>
                     <label>Email:</label>
-                    <input type="text" id="email" name="email" value={email} 
-                    onChange={(e) => setEmail(e.target.value)}/>
-                    {error.email !== "" && <Error error={error.email} />}
+                    <input type="text" id="email" name="email" value={fields.email} 
+                    onChange={updateFields}/>
+                    {error.email !== "" && Error(error.email)}
                 </div>
                 <div className='Form-Field'>
                     <label>Password:</label>
-                    <input type="current-password" id="current-password" name="current-password" value={password}
-                    onChange={(e) => setPassWord(e.target.value)}/>
-                    {error.password !== "" && <Error error={error.password} />}
+                    <input type="password" id="password" name="password" value={fields.password}
+                    onChange={updateFields}/>
+                    {error.password !== "" &&  Error(error.password)}
                 </div>
                 <div className='login-register-container'>
                     Don't have an account? 

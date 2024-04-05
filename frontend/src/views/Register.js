@@ -19,7 +19,7 @@ import SubmitButton from '../components/SubmitButton';
 const Register = () => {
 
     const[fields, setFields] = useState({ email: "", username: "", password: ""})
-    const[error, setError] = useState({email: "", password: ""});
+    const[error, setError] = useState({email: "", username: "", password: ""});
 
     const navigate = useNavigate();
 

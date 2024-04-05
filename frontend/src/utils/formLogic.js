@@ -3,14 +3,26 @@ import React from "react";
 const validateRegisterForm = ( setError, fields ) => {
 
     let emailError = validateEmail(fields.email);
-    let nameError = validateUsername(fields.userName);
+    let nameError = validateUsername(fields.username);
     let pwError = validatePassword(fields.password);
 
     let temp = {email: emailError, username: nameError, password: pwError};
     setError(temp);
 
+    return temp.email === "" && temp.password === "" && temp.username;
+}
+
+const validateLogin = ( setError, fields ) => {
+
+    let emailError = validateEmail(fields.email);
+    let pwError = validatePassword(fields.password);
+
+    let temp = {email: emailError, password: pwError};
+    setError(temp);
+
     return temp.email === "" && temp.password === "";
 }
+
 const validateEmail = (email) => {
     
     let errorMsg = "";
@@ -62,8 +74,10 @@ function loginUser( fields ){
 
 }
 
-//TODO implement
+//TODO implement asyn interaction
 function attemptLogin( fields ) {
+
+
     return true;
 }
 
@@ -74,6 +88,7 @@ function emailInUse(){
 
 export {
     validateRegisterForm,
+    validateLogin,
     attemptLogin,
     loginUser,
     addUser
