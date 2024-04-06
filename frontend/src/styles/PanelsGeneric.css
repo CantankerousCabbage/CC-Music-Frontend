@@ -1,0 +1,14 @@
+
+.Home-Panel{
+    
+    background-color: #ece2f8;
+    color: black;
+    border-radius: 10px;
+    font-size: calc(6px + 1vmin);
+    
+}
+
+.Home-Panel-Title {
+    text-align: center;
+}
+

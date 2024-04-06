@@ -2,6 +2,7 @@
 .Nav-Container{
     background-color:  #282c34;
     font-size: calc(10px + 2vmin);
+    min-width: 200px;
     width: 100%;
     height: fit-content;
     position: fixed;
@@ -24,8 +25,8 @@
 }
 
 .Content-Buffer {
-    height: 10vh;
-    min-height: calc(50px + 8vmin);
+    height: calc(10vh + 15px);
+    min-height: calc(50px + 10vmin);
     z-index: 1;
 }
 

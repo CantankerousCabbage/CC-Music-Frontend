@@ -1,9 +1,11 @@
 .Home-Content-Container{
+    max-width: 80%;
+    margin: auto;
     padding: calc(10px + 1vmin);
     height: fit-content;
     min-height: 100vh;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
 }
 
 .Home-Col1-Container{

@@ -1,0 +1,25 @@
+
+.Home-Search-Container{
+    width: 100%;
+    height: fit-content;
+    
+}
+
+.Home-search-msgs{
+    margin-top: calc(2px + 1vmin);
+    text-align: center;
+}
+
+.Home-Search-Field{
+    
+    max-width: min(60%, 300px);
+    min-width: calc(30px + 10vmin);
+    margin: calc(1% + 5px) auto 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.Home-submitButton-container {
+    display: flex;
+    justify-content: center;
+}

@@ -1,6 +1,6 @@
 
 //CSS
-import '../styles/Panels.css';
+import '../styles/PanelsGeneric.css';
 
 const UserPanel = () => {
     return(
