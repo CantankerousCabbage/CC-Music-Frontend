@@ -19,6 +19,13 @@ const Home = ( {user} ) => {
 
     const[queryMsg, setMsg] = useState("");
 
+    const handleRemove = () => {
+
+    }
+
+    const handleSubscribe = () => {
+
+    }
     
 
     return (
@@ -28,11 +35,11 @@ const Home = ( {user} ) => {
         <div className="Home-Content-Container">
             <div className="Home-Col1-Container">
                 <SearchPanel setResults={setResults} setMsg={setMsg}/>
-                <QueryDisplay albumArray={queryResults} isSearch={true}/>
+                <QueryDisplay albumArray={queryResults} isSearch={true} subscribe={handleSubscribe} />
             </div>
             <div className="Home-Col2-Container">
                 <UserPanel username={user.username}/>
-                <SubDisplay albumArray={subResults} isSearch={false}/>
+                <SubDisplay albumArray={subResults} isSearch={false} remove={handleRemove} />
             </div>
         </div>
         )}
@@ -42,7 +49,7 @@ const Home = ( {user} ) => {
     )
 }
 
-const QueryDisplay = ( {albumArray, isSearch}) => {
+const QueryDisplay = ( {albumArray, isSearch, subscribe}) => {
 
     const resultsMSG = (numResults) => {
         let message = (numResults === 0) ? "No result retrieved. Please query again." 
@@ -59,7 +66,7 @@ const QueryDisplay = ( {albumArray, isSearch}) => {
             <div className="Query-Msg-Container">{resultsMSG(albumArray.length)}</div>
             <div className="Results-Container">
                     {albumArray.map((album, key) => {
-                       return( <AlbumPanel album={album} isSearch={isSearch} />)
+                       return( <AlbumPanel album={album} isSearch={isSearch} onClick={subscribe}/>)
                     })}
             </div> </>)}
 
@@ -68,7 +75,7 @@ const QueryDisplay = ( {albumArray, isSearch}) => {
     )
 }
 
-const SubDisplay = ( {albumArray, isSearch}) => {
+const SubDisplay = ( {albumArray, isSearch, remove}) => {
 
     const resultsMSG = (numResults) => {
         let message = (numResults === 0) ? "Subscribed to 1 album." 
@@ -84,7 +91,7 @@ const SubDisplay = ( {albumArray, isSearch}) => {
             <div className="Query-Msg-Container">{resultsMSG(albumArray.length)}</div>
             <div className="Results-Container">
                     {albumArray.map((album, key) => {
-                       return( <AlbumPanel album={album} isSearch={isSearch} />)
+                       return( <AlbumPanel album={album} isSearch={isSearch} onClick={remove}/>)
                     })}
             </div>
         </div>)

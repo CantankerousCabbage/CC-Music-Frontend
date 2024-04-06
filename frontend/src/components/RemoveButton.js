@@ -2,7 +2,7 @@
 //CSS
 import '../styles/buttons.css';
 
-const SubscribeButton = () => {
+const RemoveButton = () => {
     
 
     const onClick = () => {
@@ -11,9 +11,9 @@ const SubscribeButton = () => {
 
     return (
         <div className="" onClick={onClick}>
-           Subscribe &#8722;;
+           &#8722; Remove 
         </div>
     )
 }
 
-export default SubscribeButton;
+export default RemoveButton;

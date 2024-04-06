@@ -1,0 +1,27 @@
+
+.Album-Panel-Container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Album-Info-Container{
+    display: flex;
+    flex-direction: row;
+}
+
+.Album-Text-Container{
+    list-style-type: none;
+}
+
+.Album-Text-Entry{
+
+}
+
+.Album-Panel-Button{
+
+}
+
+.Album-Image-Container{
+
+}

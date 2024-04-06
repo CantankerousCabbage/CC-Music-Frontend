@@ -11,7 +11,7 @@ const SubscribeButton = () => {
 
     return (
         <div className="" onClick={onClick}>
-           Subscribe &#43;
+           &#43; Subscribe 
         </div>
     )
 }
