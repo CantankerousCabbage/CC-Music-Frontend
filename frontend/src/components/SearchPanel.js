@@ -11,7 +11,7 @@ import { searchAlbums } from '../api/APIAlbums';
 import '../styles/PanelsGeneric.css';
 import '../styles/SearchPanel.css';
 
-const SearchPanel = ( {setResults, setMsg} ) => {
+const SearchPanel = ( {setResults} ) => {
 
     //States for governing form input and user feedback
     const[fields, setFields] = useState({title:"", year:"", artist:""});
@@ -28,22 +28,14 @@ const SearchPanel = ( {setResults, setMsg} ) => {
 
         //TODO add async to API request
         if(validateSearch(fields, setError)){
-            const albumArray = searchAlbums(fields);
 
-            let numResults = albumArray.length;
-            
-            //Change msg plural based on num results
-            let message = (numResults === 0) ? "No result retrieved. Please query again." 
-            : (numResults === 1) ? "Query returned 1 result" 
-            : `Query return ${numResults} results`;
-            
-            setMsg(message);
+            const albumArray = searchAlbums(fields);
             setResults(albumArray);
         }
     }
 
     return (
-        <div className='Home-Panel Home-Search-Container'>
+        <div className='Home-Panel Home-Search-Container HS-Colour'>
             <h2 className='Home-Panel-Title'>Query Music</h2>
             <form onSubmit={handleSubmit}>
                 <div className='Home-Search-Field'>

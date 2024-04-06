@@ -1,8 +1,13 @@
 
 .Home-Search-Container{
-    width: 100%;
+    /* width: 100%; */
     height: fit-content;
     
+}
+
+.HS-Colour {
+    background-color: #ece2f8;
+    color: black;
 }
 
 .Home-search-msgs{

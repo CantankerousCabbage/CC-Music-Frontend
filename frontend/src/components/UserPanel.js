@@ -2,9 +2,12 @@
 //CSS
 import '../styles/PanelsGeneric.css';
 
-const UserPanel = () => {
+const UserPanel = ( {username} ) => {
     return(
-        ""
+        <div className='User-Panel'>
+            <div className='User-Smiley'>&#9787; </div> 
+            {username}
+            </div>
     );
 }
 
