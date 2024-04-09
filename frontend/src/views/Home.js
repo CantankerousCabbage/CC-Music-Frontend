@@ -1,5 +1,8 @@
 import React from "react";
 
+//API's
+import { getSubscription, createSubscription, deleteSubscription, searchAlbums } from "../api/APIs";
+
 //Componenets
 import UserPanel from "../components/UserPanel";
 import SearchPanel from "../components/SearchPanel";
@@ -19,12 +22,24 @@ const Home = ( {user} ) => {
 
     const[queryMsg, setMsg] = useState("");
 
-    const handleRemove = () => {
+    const handleRemove = async (album) => {
+        const success = await deleteSubscription(user.email, title);
 
+        if(success){
+            const temp = {...subResults}
+            temp.splice(temp.indexOf(album.title), 1);
+            setSubs(subResults);
+        }
     }
 
-    const handleSubscribe = () => {
+    const handleSubscribe = async (album) => {
+        const success = await createSubscription(user.email, song);
 
+        if(success){
+            const temp = {...subResults}
+            temp.push(album);
+            setSubs(subResults);
+        }
     }
     
 

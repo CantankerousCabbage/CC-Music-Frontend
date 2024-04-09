@@ -73,6 +73,7 @@ const Register = () => {
                     <input type="password" id="password" name="password" value={fields.password}
                     onChange={updateFields}/>
                     {(error.password !== "") && Error(error.password)}
+                    {(error.invalid !== "") && Error(error.invalid)}
                 </div>
                 <div className='form-b-container'>
                     <SubmitButton buttonText={"Register"} />

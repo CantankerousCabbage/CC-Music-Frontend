@@ -21,8 +21,8 @@ const AlbumPanel = ( {album, isSearch, onClick} ) => {
                 </div>
             </div>
             <div className='Album-Panel-Button'>
-                {(isSearch) ? (<SubscribeButton onClick={onClick}/>) :
-                (<RemoveButton onClick={onClick}/>)}
+                {(isSearch) ? (<SubscribeButton onClick={() => onClick(album)}/>) :
+                (<RemoveButton onClick={() => onClick(album)}/>)}
             </div>  
         </div>
     );

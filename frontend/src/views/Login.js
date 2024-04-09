@@ -17,7 +17,7 @@ import SubmitButton from '../components/SubmitButton';
 import RegisterButton from '../components/RegisterButton'
 
 //Functions
-import { validateLogin, attemptLogin, setUser } from '../utils/formLogic';
+import { validateLogin  } from '../utils/formLogic';
 import { verifyLogin } from '../api/APIs';
 
 
@@ -29,7 +29,6 @@ const Login = ({ setUser }) => {
     const [fields, setFields] = useState({email: "", password: ""});
     const[error, setError] = useState({invalid: "", email: "", password: ""});
 
-    //TODO update to async
     //Handles form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,14 +39,11 @@ const Login = ({ setUser }) => {
             const response = await verifyLogin(setUser, fields);
 
             if(response){
-                // const temp = {...error}
-                // temp.invalid = ""
+                
                 navigate("/");
             } else {
                 error.invalid = "Email or password is invalid";
             }
-            //TODO get usename returned from login check
-            // setUser( {username: "Bob", email: fields.email} );
         }
     }
 
