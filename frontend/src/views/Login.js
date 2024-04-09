@@ -1,5 +1,8 @@
 import React from 'react';
 
+//API
+import axios from 'axios';
+
 //CSS
 import '../styles/forms.css';
 
@@ -15,6 +18,7 @@ import RegisterButton from '../components/RegisterButton'
 
 //Functions
 import { validateLogin, attemptLogin, setUser } from '../utils/formLogic';
+import { getLog } from '../api/APILogin';
 
 
 const Login = ( { setUser }) => {
@@ -27,11 +31,13 @@ const Login = ( { setUser }) => {
 
     //TODO update to async
     //Handles form submission
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         
         //Navigate Home on Login
         if(validateLogin(setError, fields) && attemptLogin( fields )){
+            
+            await getLog();
 
             //TODO get usename returned from login check
             setUser( {username: "Bob", email: fields.email} );
@@ -41,6 +47,7 @@ const Login = ( { setUser }) => {
 
     const updateFields = (event) => {
 
+        
         const temp = {...fields};
         temp[event.target.name] = event.target.value;
         setFields(temp);
