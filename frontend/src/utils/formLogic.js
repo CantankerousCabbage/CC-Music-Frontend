@@ -6,10 +6,10 @@ const validateRegisterForm = ( setError, fields ) => {
     let nameError = validateUsername(fields.username);
     let pwError = validatePassword(fields.password);
 
-    let temp = {email: emailError, username: nameError, password: pwError};
+    let temp = {invalid: "", email: emailError, username: nameError, password: pwError};
     setError(temp);
 
-    return temp.email === "" && temp.password === "" && temp.username;
+    return temp.email === "" && temp.password === "" && temp.username ==="";
 }
 
 const validateLogin = ( setError, fields ) => {
@@ -62,18 +62,7 @@ function validateUsername(username) {
     return errorMsg;
 }
 
-function addUser() {
-
-}
-
-//TODO implement
-function loginUser( fields ){
-
-}
-
 export {
     validateRegisterForm,
     validateLogin,
-    loginUser,
-    addUser
 }

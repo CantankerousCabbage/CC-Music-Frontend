@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 //CSS
 import '../styles/forms.css';
 
@@ -8,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 //Functions
-import { validateRegisterForm, addUser, loginUser } from '../utils/formLogic';
+import { validateRegisterForm } from '../utils/formLogic';
+import { registerUser } from '../api/APIs';
 
 //Componenets
 import Error from '../components/Error';
@@ -19,21 +21,27 @@ import SubmitButton from '../components/SubmitButton';
 const Register = () => {
 
     const[fields, setFields] = useState({ email: "", username: "", password: ""})
-    const[error, setError] = useState({email: "", username: "", password: ""});
+    const[error, setError] = useState({invalid: "", email: "", username: "", password: ""});
 
     const navigate = useNavigate();
 
     //Handles form submission
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         
         //If registration valid login and Home. 
         if(validateRegisterForm( setError, fields)){
+            
+            const success = await registerUser(fields);
 
-            addUser(fields);
-            loginUser(fields);
-            navigate("/Login");
-        }
+            if(success){
+                navigate("/Login");
+            } else {
+                const temp = {...error};
+                temp.invalid = "The email already exists"
+                setError(temp);
+            }   
+        } 
     }
 
     const updateFields = (event) => {
@@ -47,7 +55,7 @@ const Register = () => {
     return (
         <div className="Content-Container">
             <div className='Page-Heading'><h2>Register</h2></div>
-            <form className='Form-Container' onSubmit={handleSubmit} noValidate>
+            <form className='Form-Container' onSubmit={handleSubmit} >
                 <div className='Form-Field'>
                     <label>Email:</label>
                     <input type="text" id="email" name="email" value={fields.email} 

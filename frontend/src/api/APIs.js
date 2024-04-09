@@ -36,14 +36,18 @@ const verifyLogin = async ( setUser, fields ) => {
 
 const registerUser = async (newUser) => {
     const registerUser_URL = "https://2mv97phs7d.execute-api.us-east-1.amazonaws.com/developement/CRUD-Login-Register";
-    
+    let success = false;
     try {
         const response = await axios.post(registerUser_URL, {"email": newUser.email, "username": newUser.username, "password": newUser.password,  "type": "create"});
         console.log(response.data); 
+
+        success = response.status === 200;
     } catch (error) {
+        success = false;
         console.error("Error occurred:", error.message);
         console.error("Response data:", error.response.data);
     }
+    return success;
 }
 
 const searchAlbums = async (fields) => {

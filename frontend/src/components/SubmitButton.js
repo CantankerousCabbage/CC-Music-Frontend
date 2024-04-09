@@ -10,7 +10,7 @@ const SubmitButton = ( { buttonText } ) => {
     // const onClick = () => {
     //     execute();
     // }
-
+    console.log("click");
     return (
         <button className="form-button" type="submit">
             { buttonText }
