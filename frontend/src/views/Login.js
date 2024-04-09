@@ -18,16 +18,16 @@ import RegisterButton from '../components/RegisterButton'
 
 //Functions
 import { validateLogin, attemptLogin, setUser } from '../utils/formLogic';
-import { getLog } from '../api/APILogin';
+import { verifyLogin } from '../api/APIs';
 
 
-const Login = ( { setUser }) => {
+const Login = ({ setUser }) => {
 
     const navigate = useNavigate();
 
     //States for form data
     const [fields, setFields] = useState({email: "", password: ""});
-    const[error, setError] = useState({email: "", password: ""});
+    const[error, setError] = useState({invalid: "", email: "", password: ""});
 
     //TODO update to async
     //Handles form submission
@@ -35,19 +35,24 @@ const Login = ( { setUser }) => {
         event.preventDefault();
         
         //Navigate Home on Login
-        if(validateLogin(setError, fields) && attemptLogin( fields )){
+        if(validateLogin(setError, fields)){
             
-            await getLog();
+            const response = await verifyLogin(setUser, fields);
 
+            if(response){
+                // const temp = {...error}
+                // temp.invalid = ""
+                navigate("/");
+            } else {
+                error.invalid = "Email or password is invalid";
+            }
             //TODO get usename returned from login check
-            setUser( {username: "Bob", email: fields.email} );
-            navigate("/");
+            // setUser( {username: "Bob", email: fields.email} );
         }
     }
 
     const updateFields = (event) => {
 
-        
         const temp = {...fields};
         temp[event.target.name] = event.target.value;
         setFields(temp);
@@ -68,6 +73,7 @@ const Login = ( { setUser }) => {
                     <input type="password" id="password" name="password" value={fields.password}
                     onChange={updateFields}/>
                     {error.password !== "" &&  Error(error.password)}
+                    {error.invalid !== "" && Error(error.invalid)}
                 </div>
                 <div className='login-register-container'>
                     Don't have an account? 

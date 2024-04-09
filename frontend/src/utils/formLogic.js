@@ -34,9 +34,6 @@ const validateEmail = (email) => {
     else if (!/\S+@\S+\.\S+/.test(email)){
         errorMsg = "Please use following format: <string>@<domain>.com"
     } 
-    else if (emailInUse(email)){
-        errorMsg = "Email in use."
-    } 
     
     return errorMsg;
 }
@@ -74,22 +71,9 @@ function loginUser( fields ){
 
 }
 
-//TODO implement asyn interaction
-function attemptLogin( fields ) {
-
-
-    return true;
-}
-
-//TODO implement.
-function emailInUse(){
-    return false;
-}
-
 export {
     validateRegisterForm,
     validateLogin,
-    attemptLogin,
     loginUser,
     addUser
 }

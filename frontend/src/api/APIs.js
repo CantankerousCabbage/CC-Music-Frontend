@@ -1,7 +1,6 @@
 
 import axios from "axios";
-
-
+import React from "react";
 
 // const getLog = async () => {
 //     const getLogin = "https://wb5rxpjrt6.execute-api.us-east-1.amazonaws.com/Production/Lambda-CRUD-get";
@@ -15,16 +14,24 @@ import axios from "axios";
 //     }
 // }
 
-const verifyLogin = async (fields) => {
+const verifyLogin = async ( setUser, fields ) => {
     const verifyLogin_URL = "https://e1jerl0ws3.execute-api.us-east-1.amazonaws.com/developement/Lambda-Login-Check";
     
+    let success = false;
+
     try {
+        
         const response = await axios.post(verifyLogin_URL, {"email": fields.email, "password": fields.password, "type": "get"});
         console.log(response.data); 
+        setUser(response.data);
+
+        success = response.status === 200;
     } catch (error) {
         console.error("Error occurred:", error.message);
         console.error("Response data:", error.response.data);
     }
+
+    return success;
 }
 
 const registerUser = async (newUser) => {
