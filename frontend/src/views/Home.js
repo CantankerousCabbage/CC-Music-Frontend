@@ -9,9 +9,6 @@ import UserPanel from "../components/UserPanel";
 import SearchPanel from "../components/SearchPanel";
 import AlbumPanel from "../components/AlbumPanel";
 
-//React
-import { useState } from 'react';
-
 //CSS 
 import '../styles/Home.css'
 import '../styles/PanelsGeneric.css'
@@ -23,20 +20,28 @@ const Home = ( {user} ) => {
     const[queryMsg, setMsg] = useState("");
 
     //Get Initial subs
-    useEffect(async () => {
-        const subObject = await getSubscription(user.email);
+    useEffect( () => {
 
-        const temp = [];
-        for (key in subObject) {
-            temp.push(subObject[key]);
-        } 
+        const get = async (user) => {
+            const subObject = await getSubscription(user.email);
+            return subObject;
+        }
+        if(user.email){
+            const subObject = get(user)
 
-        setSubs(temp);
+            const temp = [];
+            for (const key in subObject) {
+                temp.push(subObject[key]);
+            } 
+    
+            setSubs(temp); 
+        }
+        
 
     }, [])
 
     const handleRemove = async (album) => {
-        const success = await deleteSubscription(user.email, title);
+        const success = await deleteSubscription(user.email, album.title);
 
         if(success){
             const temp = {...subResults}
@@ -46,7 +51,7 @@ const Home = ( {user} ) => {
     }
 
     const handleSubscribe = async (album) => {
-        const success = await createSubscription(user.email, song);
+        const success = await createSubscription(user.email, album);
 
         if(success){
             const temp = {...subResults}
@@ -65,7 +70,7 @@ const Home = ( {user} ) => {
         <div className="Home-Content-Container">
             <div className="Home-Col1-Container">
                 <SearchPanel setResults={setResults} setMsg={setMsg}/>
-                <QueryDisplay albumArray={queryResults} isSearch={true} subscribe={handleSubscribe} />
+                <QueryDisplay albumArray={queryResults} subResults={subResults} isSearch={true} subscribe={handleSubscribe} />
             </div>
             <div className="Home-Col2-Container">
                 <UserPanel username={user.username}/>
@@ -79,7 +84,7 @@ const Home = ( {user} ) => {
     )
 }
 
-const QueryDisplay = ( {albumArray, isSearch, subscribe}) => {
+const QueryDisplay = ( {albumArray, subResults, isSearch, subscribe}) => {
 
     const resultsMSG = (numResults) => {
         let message = (numResults === 0) ? "No result retrieved. Please query again." 
@@ -96,13 +101,25 @@ const QueryDisplay = ( {albumArray, isSearch, subscribe}) => {
             <div className="Query-Msg-Container">{resultsMSG(albumArray.length)}</div>
             <div className="Results-Container">
                     {albumArray.map((album, key) => {
-                       return( <AlbumPanel album={album} isSearch={isSearch} onClick={subscribe}/>)
+                       return( <AlbumPanel album={album} subbed={CheckArray(album.title, subResults)} isSearch={isSearch} onClick={subscribe}/>)
                     })}
             </div> </>)}
 
         </div>
         
     )
+}
+
+const CheckArray = ( {title, subArray} ) => {
+    let success = false;
+
+    for( let i = 0; i < subArray.length || success; i++){
+        if(subArray[i] === title){
+            success = true;
+        }
+    }
+
+    return success;
 }
 
 const SubDisplay = ( {albumArray, isSearch, remove}) => {

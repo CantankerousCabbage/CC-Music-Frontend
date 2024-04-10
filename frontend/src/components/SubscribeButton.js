@@ -2,7 +2,7 @@
 //CSS
 import '../styles/buttons.css';
 
-const SubscribeButton = () => {
+const SubscribeButton = ({ subbed }) => {
     
 
     const onClick = () => {
@@ -10,9 +10,20 @@ const SubscribeButton = () => {
     }
 
     return (
-        <div className="" onClick={onClick}>
-           &#43; Subscribe 
-        </div>
+        <>
+            {subbed ? 
+            <div className="" onClick={onClick}>
+                &#43; Subscribe 
+            </div>
+            :
+            <div className="" >
+            Subscribed &#10004; 
+            </div>
+         }
+        
+        
+        </>
+        
     )
 }
 

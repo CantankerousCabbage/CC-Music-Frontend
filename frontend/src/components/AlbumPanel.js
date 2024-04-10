@@ -7,7 +7,7 @@ import RemoveButton from './RemoveButton';
 //CSS
 import '../styles/PanelsGeneric.css';
 
-const AlbumPanel = ( {album, isSearch, onClick} ) => {
+const AlbumPanel = ( {album, subbed, isSearch, onClick} ) => {
     return (
         <div className='Album-Panel-Container'>
             <div className='Album-Info-Container'>
@@ -21,7 +21,7 @@ const AlbumPanel = ( {album, isSearch, onClick} ) => {
                 </div>
             </div>
             <div className='Album-Panel-Button'>
-                {(isSearch) ? (<SubscribeButton onClick={() => onClick(album)}/>) :
+                {(isSearch) ? (<SubscribeButton subbed={subbed} onClick={() => onClick(album)}/>) :
                 (<RemoveButton onClick={() => onClick(album)}/>)}
             </div>  
         </div>

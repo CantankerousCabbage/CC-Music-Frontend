@@ -34,7 +34,7 @@ const SearchPanel = ( {setResults} ) => {
 
             if("title" in albumArray){
                 const temp = [];
-                for (key in albumArray) {
+                for (const key in albumArray) {
                     temp.push(albumArray[key]);
                 } 
                 setResults(albumArray);

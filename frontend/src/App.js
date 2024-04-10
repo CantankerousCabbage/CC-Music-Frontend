@@ -15,7 +15,7 @@ import Login from "./views/Login";
 
 function App() {
 
-	const[user, setUser] = useState({ username: "cat", email: ""});
+	const[user, setUser] = useState({ username: "", email: ""});
 
 	return (
 		<div className='App'>
