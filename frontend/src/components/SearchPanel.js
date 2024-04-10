@@ -5,7 +5,8 @@ import SubmitButton from './SubmitButton';
 import Error from './Error';
 
 //Functions
-import { searchAlbums } from '../api/APIAlbums';
+
+import { searchAlbums } from '../api/APIs';
 
 //CSS
 import '../styles/PanelsGeneric.css';
@@ -23,14 +24,22 @@ const SearchPanel = ( {setResults} ) => {
         setFields(temp);
     }
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        //TODO add async to API request
+        //TODO test
         if(validateSearch(fields, setError)){
 
-            const albumArray = searchAlbums(fields);
-            setResults(albumArray);
+            const albumArray = await searchAlbums(fields);
+
+            if("title" in albumArray){
+                const temp = [];
+                for (key in albumArray) {
+                    temp.push(albumArray[key]);
+                } 
+                setResults(albumArray);
+            }
+           
         }
     }
 

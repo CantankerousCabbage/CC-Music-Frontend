@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios"
 
 //API's
 import { getSubscription, createSubscription, deleteSubscription, searchAlbums } from "../api/APIs";
@@ -19,8 +20,20 @@ const Home = ( {user} ) => {
 
     const[subResults, setSubs] = useState([]);
     const[queryResults, setResults] = useState([]);
-
     const[queryMsg, setMsg] = useState("");
+
+    //Get Initial subs
+    useEffect(async () => {
+        const subObject = await getSubscription(user.email);
+
+        const temp = [];
+        for (key in subObject) {
+            temp.push(subObject[key]);
+        } 
+
+        setSubs(temp);
+
+    }, [])
 
     const handleRemove = async (album) => {
         const success = await deleteSubscription(user.email, title);
@@ -41,6 +54,8 @@ const Home = ( {user} ) => {
             setSubs(subResults);
         }
     }
+
+    //TODO add function to check sub and search results off against each other
     
 
     return (
