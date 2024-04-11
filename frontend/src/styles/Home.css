@@ -49,3 +49,17 @@
     font-style: italic;
     margin-bottom: calc(1vmin + 10px);
 }
+
+.Home-MAIN-Placeholder{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Home-Image {
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    align-self: center;
+    justify-content: center;
+}

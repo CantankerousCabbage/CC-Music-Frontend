@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
 
+//Image
+import  image from '../styles/title.png';
 //API's
 import { getSubscription, createSubscription, deleteSubscription, searchAlbums } from "../api/APIs";
 
@@ -81,7 +83,7 @@ const Home = ( {user} ) => {
         </div>
         )}
         { (user.username === "") &&
-        (<div > User Not Logged In </div>)}
+        (<MainPlaceholder />)}
         </>
     )
 }
@@ -141,6 +143,12 @@ const SubDisplay = ( {albumArray, isSearch, remove}) => {
     )
 }
 
+const MainPlaceholder = () => {
+    return(
+        <div className="Home-MAIN-Placeholder">
+            <img className="Home-Image" src={image} />
+        </div>) 
+}
 const SubPlaceholder = () => {
     return(
     <div className="Home-Sub-Placeholder">
