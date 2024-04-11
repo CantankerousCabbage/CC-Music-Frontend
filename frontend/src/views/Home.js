@@ -71,7 +71,8 @@ const Home = ( {user} ) => {
         <div className="Home-Content-Container">
             <div className="Home-Col1-Container">
                 <SearchPanel setResults={setResults} setSearched={setSearched} setMsg={setMsg}/>
-                <QueryDisplay albumArray={queryResults} searched={searched} subResults={subResults} isSearch={true} subscribe={handleSubscribe} />
+                <QueryDisplay albumArray={queryResults} searched={searched} subResults={subResults} 
+                isSearch={true} subscribe={handleSubscribe} queryMsg={queryMsg} />
             </div>
             <div className="Home-Col2-Container">
                 <UserPanel username={user.username}/>

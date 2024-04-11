@@ -26,23 +26,13 @@ const SearchPanel = ( {setResults, setSearched} ) => {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        
         //TODO test
         if(validateSearch(fields, setError)){
 
-            const albumArray = await searchAlbums( fields);
-
-            if(albumArray.length){
-
-                // const temp = [];
-                // for (const key in albumArray) {
-                //     temp.push(albumArray[key]);
-                // } 
-                setSearched(true);
-                setResults(albumArray);
-                
-            }
-           
+            const success = await searchAlbums( fields, setResults);
+            setSearched(true);
+                   
         }
     }
 

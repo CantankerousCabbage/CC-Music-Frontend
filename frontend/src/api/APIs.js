@@ -54,21 +54,27 @@ const registerUser = async (newUser) => {
     return success;
 }
 
-const searchAlbums = async (fields) => {
+const searchAlbums = async (fields, setResults) => {
     const searchAlbums_URL = "https://xk5cprsn1c.execute-api.us-east-1.amazonaws.com/default/Lambda-Album-Search";
-    let returnObject = null;
+    let success = false;
 
     try {
-        const response = await axios.post(searchAlbums_URL, {"title": fields.email, "year": fields.year, "artist": fields.artist,  "type": "search"});
-        returnObject = response.data.body.albums;
-         
+        const response = await axios.post(searchAlbums_URL, {"title": fields.title, "year": fields.year, "artist": fields.artist,  "type": "search"});
+        const returnObject = response.data.body.albums;
+
+        success = response.data.statusCode === 200
+         if(success){
+            setResults(returnObject);
+         } else {
+            setResults([]);
+         }
         // console.log(response.data.body.albums); 
     } catch (error) {
         console.error("Error occurred:", error.message);
         console.error("Response data:", error.response.data);
     }
 
-    return returnObject;
+    return success;
 }
 
 const getSubscription = async (email) => {
