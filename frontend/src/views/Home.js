@@ -27,7 +27,8 @@ const Home = ( {user} ) => {
             if(user.email){
                 try {
                     const subObject = await getSubscription(user.email);
-                    setSubs(subObject);
+                    console.log(subObject)
+                    setSubs("sub" + subObject);
                 } catch (error) {
                     console.error("Error fetching subscription:", error);
                 }

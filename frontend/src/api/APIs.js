@@ -77,12 +77,14 @@ const searchAlbums = async (fields, setResults) => {
 
 const getSubscription = async (email) => {
     const getSubs_URL = "https://mug8stxt6l.execute-api.us-east-1.amazonaws.com/default/Lambda-Subscription-Get";
-    let returnObject = null;
+    let returnObject = [];
 
     try {
         const response = await axios.post(getSubs_URL, {"email": email, "type": "get"});
         
-        returnObject = response.data.body;
+        if(response.data.statusCode === 200){
+            returnObject = response.data.body;
+        } 
     } catch (error) {
         console.error("Error occurred:", error.message);
         console.error("Response data:", error.response.data);
