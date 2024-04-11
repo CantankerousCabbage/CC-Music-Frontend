@@ -1,17 +1,30 @@
 
 .Album-Panel-Container{
-    width: 100%;
+    width: inherit;
     display: flex;
     flex-direction: column;
 }
 
 .Album-Info-Container{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .Album-Text-Container{
-    list-style-type: none;
+    grid-column:1;
+    align-self: center;
+    
+}
+
+.Album-Image-Container{
+    grid-column: 2;
+    padding: calc(1vmin + 5px);
+}
+
+.album-Image {
+    box-shadow: 1px 1px 2px 1px black;
+    width: 100%;
+    
 }
 
 .Album-Text-Entry{
@@ -22,6 +35,11 @@
 
 }
 
-.Album-Image-Container{
-
+.Album-Panel-Button{
+    margin: auto;
 }
+
+.Album-Text-Entry{
+    margin-bottom: 2px;
+}
+

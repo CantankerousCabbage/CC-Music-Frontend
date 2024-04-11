@@ -17,50 +17,51 @@ const Home = ( {user} ) => {
 
     const[subResults, setSubs] = useState([]);
     const[queryResults, setResults] = useState([]);
+    const[searched, setSearched] = useState(false);
     const[queryMsg, setMsg] = useState("");
 
     //Get Initial subs
     useEffect( () => {
-
-        const get = async (user) => {
-            const subObject = await getSubscription(user.email);
-            return subObject;
-        }
-        if(user.email){
-            const subObject = get(user)
-
-            const temp = [];
-            for (const key in subObject) {
-                temp.push(subObject[key]);
-            } 
-    
-            setSubs(temp); 
+        
+        const fetchData = async () => {
+            if(user.email){
+                try {
+                    const subObject = await getSubscription(user.email);
+                    setSubs(subObject);
+                } catch (error) {
+                    console.error("Error fetching subscription:", error);
+                }
+            }
         }
         
-
+       fetchData();
     }, [])
 
     const handleRemove = async (album) => {
-        const success = await deleteSubscription(user.email, album.title);
-
-        if(success){
-            const temp = {...subResults}
-            temp.splice(temp.indexOf(album.title), 1);
-            setSubs(subResults);
+        const success = await deleteSubscription(user.email, album.song.title);
+    
+        if (success) {
+            const index = subResults.findIndex((item) => item.song.title === album.song.title);
+            if (index !== -1) {
+                const temp = [...subResults];
+                temp.splice(index, 1);
+                setSubs(temp);
+            }
         }
     }
 
     const handleSubscribe = async (album) => {
-        const success = await createSubscription(user.email, album);
+        const success = await createSubscription(user.email, album.song.title);
 
+        
         if(success){
-            const temp = {...subResults}
+            console.log(album.song);
+            const temp = [...subResults];
             temp.push(album);
-            setSubs(subResults);
+            
+            setSubs(temp);
         }
     }
-
-    //TODO add function to check sub and search results off against each other
     
 
     return (
@@ -69,8 +70,8 @@ const Home = ( {user} ) => {
         (
         <div className="Home-Content-Container">
             <div className="Home-Col1-Container">
-                <SearchPanel setResults={setResults} setMsg={setMsg}/>
-                <QueryDisplay albumArray={queryResults} subResults={subResults} isSearch={true} subscribe={handleSubscribe} />
+                <SearchPanel setResults={setResults} setSearched={setSearched} setMsg={setMsg}/>
+                <QueryDisplay albumArray={queryResults} searched={searched} subResults={subResults} isSearch={true} subscribe={handleSubscribe} />
             </div>
             <div className="Home-Col2-Container">
                 <UserPanel username={user.username}/>
@@ -84,24 +85,34 @@ const Home = ( {user} ) => {
     )
 }
 
-const QueryDisplay = ( {albumArray, subResults, isSearch, subscribe}) => {
+const QueryDisplay = ( {albumArray, searched, subResults, isSearch, subscribe}) => {
 
     const resultsMSG = (numResults) => {
         let message = (numResults === 0) ? "No result retrieved. Please query again." 
         : (numResults === 1) ? "Query returned 1 result" 
-        : `Query return ${numResults} results`;
+        : `Query returned ${numResults} results`;
         return message;
     }
 
+    // const CheckArray = ( title, subArray ) => {
+    //     let success = false;
+    //     console.log("In CheckArray:" + subArray[0]);
+    
+        
+    
+    //     return success;
+    // }
+    const numSongs = albumArray.length;
+    // console.log(subResults);
     return (
         
         <div className="Home-Panel">
-            {(albumArray.length > 0) && 
+            {(searched) && 
             (<> <h3 className="Home-Panel-Title">{"Query Results"}</h3>
-            <div className="Query-Msg-Container">{resultsMSG(albumArray.length)}</div>
+            <div className="Query-Msg-Container">{resultsMSG(numSongs)}</div>
             <div className="Results-Container">
                     {albumArray.map((album, key) => {
-                       return( <AlbumPanel album={album} subbed={CheckArray(album.title, subResults)} isSearch={isSearch} onClick={subscribe}/>)
+                        return( <AlbumPanel key={key} album={album} subResults={subResults} isSearch={isSearch} onClick={subscribe}/>)
                     })}
             </div> </>)}
 
@@ -110,17 +121,7 @@ const QueryDisplay = ( {albumArray, subResults, isSearch, subscribe}) => {
     )
 }
 
-const CheckArray = ( {title, subArray} ) => {
-    let success = false;
 
-    for( let i = 0; i < subArray.length || success; i++){
-        if(subArray[i] === title){
-            success = true;
-        }
-    }
-
-    return success;
-}
 
 const SubDisplay = ( {albumArray, isSearch, remove}) => {
 
@@ -129,7 +130,8 @@ const SubDisplay = ( {albumArray, isSearch, remove}) => {
         : `Subscribed to ${numResults} albums`;
         return message;
     }
-
+    console.log(albumArray)
+    console.log(typeof albumArray)
     return (
         <>
         {(albumArray.length !== 0) ?

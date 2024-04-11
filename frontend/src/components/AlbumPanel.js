@@ -6,23 +6,38 @@ import RemoveButton from './RemoveButton';
 
 //CSS
 import '../styles/PanelsGeneric.css';
+import '../styles/AlbumPanel.css'
 
-const AlbumPanel = ( {album, subbed, isSearch, onClick} ) => {
+const AlbumPanel = ( {album, subResults, isSearch, onClick} ) => {
+    
+        let success = false;
+        if(isSearch){
+            // const song1 = album.song.title;
+            // console.log(album.song.title);
+            for(let i = 0; i < subResults.length; i++){
+                console.log(subResults[i].song.title);
+                if(album.song.title === subResults[i].song.title){
+                    success = true;
+                    break;
+                }
+            } 
+        }
+        
     return (
         <div className='Album-Panel-Container'>
             <div className='Album-Info-Container'>
                 <div className='Album-Text-Container'>
-                    <TextItem name={"Title:"} value={album.title} />
-                    <TextItem name={"Year:"} value={album.year} />
-                    <TextItem name={"Artist:"} value={album.artist} />
+                    <TextItem name={"Title:"} value={album.song.title} />
+                    <TextItem name={"Year:"} value={album.song.year} />
+                    <TextItem name={"Artist:"} value={album.song.artist} />
                 </div>
                 <div className='Album-Image-Container'>
-
+                    <img className='album-Image' src={album.imgURL} alt={album.song.title} />
                 </div>
             </div>
             <div className='Album-Panel-Button'>
-                {(isSearch) ? (<SubscribeButton subbed={subbed} onClick={() => onClick(album)}/>) :
-                (<RemoveButton onClick={() => onClick(album)}/>)}
+                {(isSearch) ? (<SubscribeButton subbed={success} onClick={onClick} album={album}/>) :
+                (<RemoveButton onClick={onClick} album={album}/>)}
             </div>  
         </div>
     );

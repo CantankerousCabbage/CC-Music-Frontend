@@ -12,7 +12,7 @@ import { searchAlbums } from '../api/APIs';
 import '../styles/PanelsGeneric.css';
 import '../styles/SearchPanel.css';
 
-const SearchPanel = ( {setResults} ) => {
+const SearchPanel = ( {setResults, setSearched} ) => {
 
     //States for governing form input and user feedback
     const[fields, setFields] = useState({title:"", year:"", artist:""});
@@ -30,14 +30,17 @@ const SearchPanel = ( {setResults} ) => {
         //TODO test
         if(validateSearch(fields, setError)){
 
-            const albumArray = await searchAlbums(fields);
+            const albumArray = await searchAlbums( fields);
 
-            if("title" in albumArray){
-                const temp = [];
-                for (const key in albumArray) {
-                    temp.push(albumArray[key]);
-                } 
+            if(albumArray.length){
+
+                // const temp = [];
+                // for (const key in albumArray) {
+                //     temp.push(albumArray[key]);
+                // } 
+                setSearched(true);
                 setResults(albumArray);
+                
             }
            
         }

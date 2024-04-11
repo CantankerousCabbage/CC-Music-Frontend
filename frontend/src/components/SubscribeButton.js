@@ -2,22 +2,17 @@
 //CSS
 import '../styles/buttons.css';
 
-const SubscribeButton = ({ subbed }) => {
-    
-
-    const onClick = () => {
-        
-    }
+const SubscribeButton = ({ subbed, onClick, album }) => {
 
     return (
         <>
-            {subbed ? 
-            <div className="" onClick={onClick}>
-                &#43; Subscribe 
-            </div>
+            {(!subbed) ? 
+            <button className="Sub-Buttons Sub-Add" onClick={() => onClick(album)} type='button'>
+                Subscribe<div className='button-Space'>&#43;</div>  
+            </button>
             :
-            <div className="" >
-            Subscribed &#10004; 
+            <div className="Sub-Buttons Sub-Noclick" >
+            Subscribed <div className='button-Space'>&#10004;</div>
             </div>
          }
         

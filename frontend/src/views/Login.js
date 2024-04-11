@@ -38,11 +38,14 @@ const Login = ({ setUser }) => {
             
             const response = await verifyLogin(setUser, fields);
 
+            console.log(response);
             if(response){
                 
                 navigate("/");
             } else {
-                error.invalid = "Email or password is invalid";
+                const temp = {...error};
+                temp.invalid = "Email or password is invalid";
+                setError(temp);
             }
         }
     }

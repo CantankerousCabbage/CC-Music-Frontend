@@ -54,3 +54,51 @@
     color:white;
 }
 
+.Sub-Buttons {
+    display: flex;
+    flex-direction: row;
+    font-size: calc(5px + 1vmin);
+    border-radius: 5px;
+    width: fit-content;
+    min-width: calc(45px + 5vmin);
+    text-decoration: none;
+    border-style: none;
+    cursor: pointer;
+    margin: calc(5px + 1vmin);
+    padding: calc(1vmin + 1px);
+}
+
+.button-Space{
+    margin-left: calc(1vmin + 5px);
+}
+.Sub-Add{
+    background-color: rgba(105, 235, 69, 0.856);
+}
+
+.Sub-Add:hover {
+    background-color: rgba(154, 255, 126, 0.984);
+}
+
+.Sub-Add:active{
+    background-color: rgba(105, 235, 69, 0.856);
+}
+
+.Sub-Remove{
+    background-color: rgb(222, 57, 7);
+}
+
+.Sub-Remove:hover {
+    background-color: rgb(237, 90, 46);
+}
+
+.Sub-Remove:active{
+    background-color: rgb(222, 57, 7);
+}
+
+.Sub-Noclick{
+    background-color: goldenrod;
+    cursor: none;
+}
+
+
+

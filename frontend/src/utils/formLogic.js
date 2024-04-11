@@ -16,8 +16,9 @@ const validateLogin = ( setError, fields ) => {
 
     let emailError = validateEmail(fields.email);
     let pwError = validatePassword(fields.password);
+    let invalid = "";
 
-    let temp = {email: emailError, password: pwError};
+    let temp = {invalid: invalid, email: emailError, password: pwError};
     setError(temp);
 
     return temp.email === "" && temp.password === "";
