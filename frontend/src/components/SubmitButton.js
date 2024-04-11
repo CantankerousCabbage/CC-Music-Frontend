@@ -7,10 +7,6 @@ import "../styles/forms.css";
 
 const SubmitButton = ( { buttonText } ) => {
 
-    // const onClick = () => {
-    //     execute();
-    // }
-   
     return (
         <button className="form-button" type="submit">
             { buttonText }

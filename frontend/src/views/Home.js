@@ -55,7 +55,6 @@ const Home = ( {user} ) => {
 
         
         if(success){
-            console.log(album.song);
             const temp = [...subResults];
             temp.push(album);
             
@@ -95,16 +94,8 @@ const QueryDisplay = ( {albumArray, searched, subResults, isSearch, subscribe}) 
         return message;
     }
 
-    // const CheckArray = ( title, subArray ) => {
-    //     let success = false;
-    //     console.log("In CheckArray:" + subArray[0]);
-    
-        
-    
-    //     return success;
-    // }
     const numSongs = albumArray.length;
-    // console.log(subResults);
+    
     return (
         
         <div className="Home-Panel">
@@ -131,8 +122,7 @@ const SubDisplay = ( {albumArray, isSearch, remove}) => {
         : `Subscribed to ${numResults} albums`;
         return message;
     }
-    console.log(albumArray)
-    console.log(typeof albumArray)
+  
     return (
         <>
         {(albumArray.length !== 0) ?

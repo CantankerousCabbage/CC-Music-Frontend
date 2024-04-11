@@ -42,9 +42,7 @@ const registerUser = async (newUser) => {
     
     try {
         const response = await axios.post(registerUser_URL, {"email": newUser.email, "username": newUser.username, "password": newUser.password,  "type": "create"});
-        console.log(response.data); 
         
-
         success = response.data.statusCode === 200;
     } catch (error) {
         success = false;
@@ -83,7 +81,6 @@ const getSubscription = async (email) => {
 
     try {
         const response = await axios.post(getSubs_URL, {"email": email, "type": "get"});
-        console.log(response.data.body)
         
         returnObject = response.data.body;
     } catch (error) {
@@ -98,8 +95,7 @@ const createSubscription = async (email, title) => {
     let success = false;
     try {
         const response = await axios.post(createSub_URL, {"email": email, "title": title, type: "create"});
-        console.log(response.data); 
-
+        
         success = response.data.statusCode === 200;
     } catch (error) {
         console.error("Error occurred:", error.message);
@@ -115,7 +111,6 @@ const deleteSubscription = async (email, title) => {
     let success = false;
     try {
         const response = await axios.post(deleteSub_URL, {"email": email, "title": title, "type": "delete"});
-        console.log(response.data); 
 
         success = response.data.statusCode === 200;
     } catch (error) {

@@ -12,10 +12,8 @@ const AlbumPanel = ( {album, subResults, isSearch, onClick} ) => {
     
         let success = false;
         if(isSearch){
-            // const song1 = album.song.title;
-            // console.log(album.song.title);
+            
             for(let i = 0; i < subResults.length; i++){
-                console.log(subResults[i].song.title);
                 if(album.song.title === subResults[i].song.title){
                     success = true;
                     break;
